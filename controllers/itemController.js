@@ -53,26 +53,42 @@ const admin = require('firebase-admin');
 
 exports.updateItem = async (req, res) => {
 
-    try {
-        const itemId = req.params.id;
-        const data = req.body;
-        const itemRef = db.collection('items').doc(itemId);
-        await itemRef.update(data);
-        res.status(200).send('Item updated');
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
+    swagger.tags = ['Items']
+           swagger.description = ''
+           swagger.summary = ''
+           swagger.parameters['id'] = {
+               description: '',
+               required: true,
+           }
+           swagger.parameters['data'] = {
+               in: 'body',
+               description: '',
+               required: true,
+           }
+           swagger.responses[200] = {
+               description: '',
+           }
+           swagger.responses[400] = {
+               description: '',
+           }
 
 };
 
 exports.deleteItem = async (req, res) => {
 
-    try {
-        const itemId = req.params.id;
-        await db.collection('items').doc(itemId).delete();
-        res.status(200).send('Item deleted');
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
+    swagger.tags = ['Items']
+         swagger.description = ''
+         swagger.summary = ''
+         swagger.parameters['id'] = {
+             description: '',
+             required: true,
+         }
+
+         swagger.responses[200] = {
+             description: '',
+         }
+         swagger.responses[400] = {
+             description: '',
+         }
 
 };
